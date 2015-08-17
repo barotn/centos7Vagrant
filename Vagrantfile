@@ -15,8 +15,9 @@ Vagrant.configure(2) do |config|
   config.ssh.insert_key = true
   	config.vm.define :centtest do |centtest|
 		centtest.vm.hostname = "centtest"
-  		centtest.vm.network "forwarded_port", guest: 80, host: 8880
-#		centtest.vm.network "public_network", bridge: "en1: Wi-Fi (AirPort)"
+  	#	centtest.vm.network "forwarded_port", guest: 80, host: 8880
+	#	centtest.vm.network "public_network", bridge: "en1: Wi-Fi (AirPort)"
+		centtest.vm.network "private_network", ip: "33.33.33.4", nictype: "hostonly"
   		centtest.vm.provision :ansible do |ansible|
         	ansible.playbook = "./playbook.yml"
 	end
